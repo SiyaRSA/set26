@@ -1,0 +1,15 @@
+[package]
+name = "set26"
+version = "0.1.0"
+edition = "2024"
+description = "Lightweight, strongly typed utilities for Rust."
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/SiyaRSA/set26"
+keywords = ["sequence", "array", "collection"]
+categories = ["data-structures", "no-std"]
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
