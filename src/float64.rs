@@ -44,6 +44,7 @@ pub struct F64(Value, Scale);
 /// let f = parse_fixed("3.125");
 /// assert_eq!(f, F64(3125, 3));
 /// ```
+#[allow(unused)]
 pub(crate) const fn parse_fixedf64(s: &str) -> F64 {
     let bytes = s.as_bytes();
 

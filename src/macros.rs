@@ -52,6 +52,6 @@ macro_rules! f32 {
 #[macro_export]
 macro_rules! f64 {
     ($val: expr) => {
-        $crate::float64::parse_fixedf64(&$val.to_string())
+        super::float64::parse_fixedf64(&$val.to_string())
     };
 }
