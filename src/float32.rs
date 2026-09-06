@@ -32,49 +32,8 @@ type Scale = usize;
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct F32(Value, Scale);
 
-/// Parses a string slice into a fixed-point [`F32`] representation.
-///
-/// This function scans the input string byte-by-byte, handles optional negative
-/// signs, detects decimal points, and calculates the appropriate integer value
-/// and scale factor.
-///
-/// # Examples
-///
-/// ```ignore
-/// let f = parse_fixed("3.125");
-/// assert_eq!(f, F32(3125, 3));
-/// ```
-#[allow(unused)]
-pub(crate) const fn parse_fixedf32(s: &str) -> F32 {
-    let bytes = s.as_bytes();
-
-    let mut i = 0;
-    let mut value: i32 = 0;
-    let mut scale: usize = 0;
-    let mut negative = false;
-
-    if bytes.len() > 0 && bytes[0] == b'-' {
-        negative = true;
-        i += 1;
+impl F32 {
+    pub const fn new(value: Value, scale: Scale) -> Self {
+        Self(value, scale)
     }
-
-    let mut has_decimal = false;
-    while i < bytes.len() {
-        let b = bytes[i];
-        if b == b'.' {
-            has_decimal = true;
-        } else if b >= b'0' && b <= b'9' {
-            value = value * 10 + (b - b'0') as i32;
-            if has_decimal {
-                scale += 1;
-            }
-        }
-        i += 1;
-    }
-
-    if negative {
-        value = -value;
-    }
-
-    F32(value, scale)
 }

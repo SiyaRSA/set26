@@ -32,49 +32,8 @@ type Scale = usize;
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct F64(Value, Scale);
 
-/// Parses a string slice into a fixed-point [`F64`] representation.
-///
-/// This function scans the input string byte-by-byte, handles optional negative
-/// signs, detects decimal points, and calculates the appropriate integer value
-/// and scale factor.
-///
-/// # Examples
-///
-/// ```ignore
-/// let f = parse_fixed("3.125");
-/// assert_eq!(f, F64(3125, 3));
-/// ```
-#[allow(unused)]
-pub(crate) const fn parse_fixedf64(s: &str) -> F64 {
-    let bytes = s.as_bytes();
-
-    let mut i = 0;
-    let mut value: i64 = 0;
-    let mut scale: usize = 0;
-    let mut negative = false;
-
-    if bytes.len() > 0 && bytes[0] == b'-' {
-        negative = true;
-        i += 1;
+impl F64 {
+    pub const fn new(value: Value, scale: Scale) -> Self {
+        Self(value, scale)
     }
-
-    let mut has_decimal = false;
-    while i < bytes.len() {
-        let b = bytes[i];
-        if b == b'.' {
-            has_decimal = true;
-        } else if b >= b'0' && b <= b'9' {
-            value = value * 10 + (b - b'0') as i64;
-            if has_decimal {
-                scale += 1;
-            }
-        }
-        i += 1;
-    }
-
-    if negative {
-        value = -value;
-    }
-
-    F64(value, scale)
 }

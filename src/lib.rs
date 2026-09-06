@@ -1,4 +1,4 @@
-// src/lib.rs
+// set26/src/lib.rs
 //! Lightweight, strongly typed utilities for Rust.
 //!
 //! The primary type provided by this crate is [`Seq`], a fixed-size sequence
