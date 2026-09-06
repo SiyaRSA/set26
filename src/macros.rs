@@ -21,3 +21,37 @@ macro_rules! seq {
         $crate::Seq::new([$($element), *])
     };
 }
+
+
+/// A convenience macro to construct an [`F32`] from numeric literals or expressions.
+///
+/// This macro converts the expression to a string and parses it into the fixed-point structure.
+///
+/// # Examples
+///
+/// ```ignore
+/// let val = f32!(3.125);
+/// ```
+#[macro_export]
+macro_rules! f32 {
+    ($val: expr) => {
+        super::float32::parse_fixedf32(&$val.to_string())
+    };
+}
+
+
+/// A convenience macro to construct an [`F64`] from numeric literals or expressions.
+///
+/// This macro converts the expression to a string and parses it into the fixed-point structure.
+///
+/// # Examples
+///
+/// ```ignore
+/// let val = f64!(3.125);
+/// ```
+#[macro_export]
+macro_rules! f64 {
+    ($val: expr) => {
+        $crate::float64::parse_fixedf64(&$val.to_string())
+    };
+}

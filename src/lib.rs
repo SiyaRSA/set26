@@ -5,12 +5,14 @@
 //! backed by an inline array.
 
 mod sequence;
+mod float64;
 mod float32;
 mod macros;
 
 
 pub use sequence::Seq;
 pub use float32::F32;
+pub use float64::F64;
 
 
 //==== Tests ====//
@@ -52,8 +54,14 @@ mod tests {
     }
 
     #[test]
-    fn test_parse_fixed() {
+    fn test_parse_fixedf32() {
         println!("{:?}", f32!(3.125));
         println!("{:?}", f32!(3125.0));
+    }
+
+    #[test]
+    fn test_parse_fixedf64() {
+        println!("{:?}", f64!(6.125));
+        println!("{:?}", f64!(6125.0));
     }
 }
