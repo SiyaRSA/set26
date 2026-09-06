@@ -5,9 +5,12 @@
 //! backed by an inline array.
 
 mod sequence;
+mod float32;
 mod macros;
 
+
 pub use sequence::Seq;
+pub use float32::F32;
 
 
 //==== Tests ====//
@@ -46,5 +49,11 @@ mod tests {
 
         assert!(seq.is_empty());
         assert_eq!(seq.len(), 0);
+    }
+
+    #[test]
+    fn test_parse_fixed() {
+        println!("{:?}", f32!(3.125));
+        println!("{:?}", f32!(3125.0));
     }
 }

@@ -95,7 +95,11 @@ It keeps the representation simple while providing a dedicated type for fixed-si
 
 ## Status
 
-`set26` is a small project and its API may evolve as additional use cases are identified.
+`set26` currently provides:
+- **`Seq<T, N>`**: A fixed-size, inline array-backed sequence.
+- **`F32`**: A fixed-point decimal type with `Eq`, `Ord`, and `Hash` support.
+
+The project is still small, and its API may evolve as additional use cases are identified.
 
 ## License
 
